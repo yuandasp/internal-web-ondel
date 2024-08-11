@@ -53,7 +53,7 @@ module.exports = {
     try {
       const { username, employeeName, position, role, status } = req.body;
 
-      const password = "admin123"; //password default
+      const password = process.env.DEFAULT_PASSWORD;
 
       const isUsernameExist = await EmployeeModel.findOne({
         username: username,
@@ -86,7 +86,15 @@ module.exports = {
   editEmployee: async (req, res) => {
     try {
       const userId = req.params.id;
-      const { employeeName, position, role, status } = req.body;
+      const { employeeName, position, status } = req.body;
+
+      if (
+        req.body !== "employeeName" ||
+        req.body !== "position" ||
+        req.body !== "status"
+      ) {
+        return res.status(400).send({ message: "The request is failed!" });
+      }
 
       const updateFields = {};
 
@@ -96,10 +104,6 @@ module.exports = {
 
       if (position) {
         updateFields.position = position;
-      }
-
-      if (role) {
-        updateFields.role = role;
       }
 
       if (status) {
@@ -121,17 +125,44 @@ module.exports = {
   assignRole: async (req, res) => {
     try {
       const userId = req.params.id;
-      const { role } = req.body;
+
+      if (req.body !== "role") {
+        return res.status(400).send({ message: "The request is failed!" });
+      }
 
       await EmployeeModel.findOneAndUpdate(
         { _id: userId },
-        { $set: role },
+        { $set: req.body },
         { new: true }
       );
 
       return res.status(200).send({ message: "Success assign new role" });
     } catch (error) {
       console.log(`Error: assignRole ${error}`);
+      res.status(500).send({ message: `Error: ${error}` });
+    }
+  },
+  changePasswordEmployee: async (req, res) => {
+    try {
+      const userId = req.params.id;
+      const { newPassword } = req.body;
+
+      if (req.body !== "newPassword") {
+        return res.status(400).send({ message: "The request is failed!" });
+      }
+
+      const salt = await bcrypt.genSalt(10);
+      const hashPassword = await bcrypt.hash(newPassword, salt);
+
+      await EmployeeModel.findOneAndUpdate(
+        { _id: userId },
+        { $set: { password: hashPassword } },
+        { new: true }
+      );
+
+      return res.status(200).send({ message: "Success change password" });
+    } catch (error) {
+      console.log(`Error: changePasswordEmployee ${error}`);
       res.status(500).send({ message: `Error: ${error}` });
     }
   },

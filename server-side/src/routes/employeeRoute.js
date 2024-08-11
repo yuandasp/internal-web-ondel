@@ -15,7 +15,18 @@ router.patch(
   isHeadOfDepartmentOrHigher,
   employeeController.editEmployee
 );
-router.patch("/:id", verifyToken, isSuperAdmin, employeeController.assignRole);
+router.patch(
+  "/r/:id",
+  verifyToken,
+  isSuperAdmin,
+  employeeController.assignRole
+);
+router.patch(
+  "/p/:id",
+  verifyToken,
+  isSuperAdmin,
+  employeeController.changePasswordEmployee
+);
 router.post(
   "/",
   verifyToken,
