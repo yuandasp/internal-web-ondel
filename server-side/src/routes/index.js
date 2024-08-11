@@ -1,9 +1,7 @@
-const express = require("express");
-const router = express.Router();
-const { authController } = require("../contollers/index");
-const { verifyToken } = require("../middleware/authVerification");
+const authRoute = require("./authRoute");
+const employeeRoute = require("./employeeRoute");
 
-router.post("/login", authController.login);
-router.post("/change-password", verifyToken, authController.changePassword);
-
-module.exports = router;
+module.exports = {
+  authRoute,
+  employeeRoute,
+};
