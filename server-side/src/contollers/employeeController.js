@@ -88,14 +88,6 @@ module.exports = {
       const userId = req.params.id;
       const { employeeName, position, status } = req.body;
 
-      if (
-        req.body !== "employeeName" ||
-        req.body !== "position" ||
-        req.body !== "status"
-      ) {
-        return res.status(400).send({ message: "The request is failed!" });
-      }
-
       const updateFields = {};
 
       if (employeeName) {
@@ -126,10 +118,6 @@ module.exports = {
     try {
       const userId = req.params.id;
 
-      if (req.body !== "role") {
-        return res.status(400).send({ message: "The request is failed!" });
-      }
-
       await EmployeeModel.findOneAndUpdate(
         { _id: userId },
         { $set: req.body },
@@ -146,10 +134,6 @@ module.exports = {
     try {
       const userId = req.params.id;
       const { newPassword } = req.body;
-
-      if (req.body !== "newPassword") {
-        return res.status(400).send({ message: "The request is failed!" });
-      }
 
       const salt = await bcrypt.genSalt(10);
       const hashPassword = await bcrypt.hash(newPassword, salt);

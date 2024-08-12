@@ -56,6 +56,7 @@ function App() {
           )}
         </Layout> */}
 
+        {/* <Content className="site-layout-background h-[calc(100vh-(64px+24px+24px))] overflow-scroll hide-scrollbar"> */}
         <Content>
           <Routes>
             <Route element={<AuthRoute />}>

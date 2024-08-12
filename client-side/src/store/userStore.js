@@ -5,7 +5,7 @@ import { AUTH_TOKEN } from "../helpers/constant";
 export const useUserStore = create((set, get) => ({
   employees: [],
   employee: {},
-  fetchAllEmployee: async ({ searchItems }) => {
+  fetchAllEmployee: async () => {
     const token = localStorage.getItem(AUTH_TOKEN);
     try {
       let response = await axios.get(
@@ -52,7 +52,7 @@ export const useUserStore = create((set, get) => ({
   editEmployee: async (id, data) => {
     const token = localStorage.getItem(AUTH_TOKEN);
     try {
-      let response = await axios.put(
+      let response = await axios.patch(
         `${process.env.REACT_APP_API_BE}employee/${id}`,
         data,
         {
@@ -66,8 +66,8 @@ export const useUserStore = create((set, get) => ({
   assignRole: async (id, data) => {
     const token = localStorage.getItem(AUTH_TOKEN);
     try {
-      let response = await axios.put(
-        `${process.env.REACT_APP_API_BE}r/employee/${id}`,
+      let response = await axios.patch(
+        `${process.env.REACT_APP_API_BE}employee/r/${id}`,
         data,
         {
           headers: { authorization: `Bearer ${token}` },
@@ -80,8 +80,8 @@ export const useUserStore = create((set, get) => ({
   changePasswordEmployee: async (id, data) => {
     const token = localStorage.getItem(AUTH_TOKEN);
     try {
-      let response = await axios.put(
-        `${process.env.REACT_APP_API_BE}r/employee/${id}`,
+      let response = await axios.patch(
+        `${process.env.REACT_APP_API_BE}employee/p/${id}`,
         data,
         {
           headers: { authorization: `Bearer ${token}` },

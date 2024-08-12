@@ -21,3 +21,7 @@ code {
   -ms-overflow-style: none; /* IE 11 */
   scrollbar-width: none; /* Firefox 64 */
 }
+
+.site-layout-background {
+  background: #fff;
+}
