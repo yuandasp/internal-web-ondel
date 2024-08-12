@@ -188,7 +188,7 @@ function AccountManagement() {
             Edit Employee
           </Button>
 
-          {["superadmin"].includes(dataUser?.role) && (
+          {["Superadmin"].includes(dataUser?.role) && (
             <>
               <Button
                 onClick={() => handleAssignRole(record)}

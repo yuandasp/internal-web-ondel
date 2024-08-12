@@ -45,9 +45,9 @@ export default function AssignRoleModal({
         <Form layout="vertical" form={form} onFinish={onFinish}>
           <Form.Item name="role" label="Role" rules={[{ required: true }]}>
             <Select placeholder="Select an option" allowClear>
-              <Option value="user">User</Option>
-              <Option value="superadmin">Superadmin</Option>
-              <Option value="headOfDepartment">Head Of Department</Option>
+              <Option value="User">User</Option>
+              <Option value="Superadmin">Superadmin</Option>
+              <Option value="Head Of Department">Head Of Department</Option>
             </Select>
           </Form.Item>
         </Form>

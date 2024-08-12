@@ -61,7 +61,16 @@ export default function EditEmployeeProfileModal({
             <Input placeholder="Employee Name" />
           </Form.Item>
 
-          <Form.Item name="position" label="Position">
+          <Form.Item
+            name="position"
+            label="Position"
+            rules={[
+              {
+                required: true,
+                message: "Please input the position!",
+              },
+            ]}
+          >
             <Input placeholder="Position" />
           </Form.Item>
 

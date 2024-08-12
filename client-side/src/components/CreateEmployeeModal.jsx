@@ -80,7 +80,16 @@ export default function CreateEmployeeModal({ openModal, onClose, onSubmit }) {
             <Input placeholder="Employee Name" />
           </Form.Item>
 
-          <Form.Item name="position" label="Position">
+          <Form.Item
+            name="position"
+            label="Position"
+            rules={[
+              {
+                required: true,
+                message: "Please input the position!",
+              },
+            ]}
+          >
             <Input placeholder="Position" />
           </Form.Item>
 
@@ -94,9 +103,9 @@ export default function CreateEmployeeModal({ openModal, onClose, onSubmit }) {
 
           <Form.Item name="role" label="Role" rules={[{ required: true }]}>
             <Select placeholder="Select an option" allowClear>
-              <Option value="user">User</Option>
-              <Option value="superadmin">Superadmin</Option>
-              <Option value="headOfDepartment">Head Of Department</Option>
+              <Option value="User">User</Option>
+              <Option value="Superadmin">Superadmin</Option>
+              <Option value="Head Of Department">Head Of Department</Option>
             </Select>
           </Form.Item>
         </Form>

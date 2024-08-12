@@ -5,7 +5,7 @@ const isSuperAdmin = async (req, res, next) => {
 
   const user = await EmployeeModel.findOne({ _id: idUser });
 
-  if (user.role === "superadmin") {
+  if (user.role === "Superadmin") {
     next();
   } else {
     return res.status(400).send({ message: "Access denied!" });
@@ -17,7 +17,7 @@ const isHeadOfDepartmentOrHigher = async (req, res, next) => {
 
   const user = await EmployeeModel.findOne({ _id: idUser });
 
-  if (user.role === "superadmin" || user.role === "headOfDepartment") {
+  if (user.role === "Superadmin" || user.role === "Head Of Department") {
     next();
   } else {
     return res.status(400).send({ message: "Access denied!" });
